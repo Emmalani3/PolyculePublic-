@@ -1,0 +1,365 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Profiles
+{% endblock %}
+
+{% block main %}
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.7.0/nouislider.min.js"></script>
+</head>
+
+<body>
+    <!-- Side navigation -->
+<div class="sidenav">
+    <h2 class="center" >Search Filters</h2>
+
+        <form id="search-form" method="GET" action="/search">
+            <!-- Age Range Slider -->
+  <!--          <div class="slider-container" >
+                <label for="age_range">Age Range: <span id="age-value"></span></label>
+                <div id="age-range-slider"></div>
+                <input type="hidden" id="age_min" name="age_min" value="18">
+                <input type="hidden" id="age_max" name="age_max" value="100">
+            </div>
+
+            <div style="display:inline-block;">
+                <label for="heightFeet">Height</label>
+                <p  style="display:inline-block;">(Feet):</p>
+                <input class="short-width" type="number" id="heightFeet" name="heightFeet" value="">
+                <p style="display:inline-block;">(Inches):</p>
+                <input class="short-width" type="number" id="heightInch" name="heightInch" value="">
+            </div>
+    -->
+            <div>
+                <div class="collapsible">
+                    <label for="ethnicity">Ethnicity:</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                <div class="checkbox-container collapsible-content ">
+                    {% for ethnicity in ethnicity %}
+                    <group2>
+                        <input type="checkbox" id="ethnicity" name= "ethnicity" value="{{ ethnicity }}"
+                        {% if ethnicity in request.args.getlist('ethnicity') %} checked {% endif %}>
+                        {{ ethnicity }}
+                    </input>
+                    </group2>
+                        {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="collapsible">
+                    <label for="location">Location:</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                <div class="checkbox-container collapsible-content">
+                    {% for location in location %}
+                    <group2>
+                        <input type="checkbox" id="location" name= "location" value="{{ location }}"
+                        {% if location in request.args.getlist('location') %} checked {% endif %}>
+                        {{ location }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="collapsible">
+                    <label for="religion">Religion:?</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                <div class="checkbox-container collapsible-content">
+                    {% for religion in religion %}
+                    <group2>
+                        <input type="checkbox" id="religion" name= "religion" value="{{ religion }}"
+                        {% if religion in request.args.getlist('religion') %} checked {% endif %}>
+                        {{ religion }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="collapsible">
+                    <label for="hasKids">Has Kids?</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                    <div class="checkbox-container collapsible-content">
+                    {% for hasKids in hasKids %}
+                    <group2>
+                        <input type="checkbox" id="hasKids" name= "hasKids" value="{{ hasKids }}"
+                        {% if hasKids in request.args.getlist('hasKids') %} checked {% endif %}>
+                        {{ hasKids }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="collapsible">
+                    <label for="wantsKids">Want Kids?</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                    <div class="checkbox-container collapsible-content">
+                    {% for wantsKids in wantsKids %}
+                    <group2>
+                        <input type="checkbox" id="wantsKids" name= "wantsKids" value="{{ wantsKids }}"
+                        {% if wantsKids in request.args.getlist('wantsKids') %} checked {% endif %}>
+                        {{ wantsKids }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="collapsible">
+                    <label for="pets">Pets:</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                <div class="checkbox-container collapsible-content">
+                    {% for pets in pets %}
+                    <group2>
+                        <input type="checkbox" id="pets" name= "pets" value="{{ pets }}"
+                        {% if pets in request.args.getlist('pets') %} checked {% endif %}>
+                        {{ pets }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="collapsible">
+                    <label for="languages">Languages:</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                <div class="checkbox-container collapsible-content">
+                    {% for language in languages %}
+                    <group2>
+                        <input type="checkbox" id="language" name= "language" value="{{ language }}"
+                        {% if language in request.args.getlist('language') %} checked {% endif %}>
+                        {{ language }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+            <h2>Sexual Preferences</h2>
+
+            <div>
+                <div class="collapsible">
+                    <label for="gender">Gender:</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                <div class="checkbox-container collapsible-content">
+                    {% for gender in gender %}
+                    <group2>
+                        <input type="checkbox" id="gender" name= "gender" value="{{ gender }}"
+                        {% if gender in request.args.getlist('gender') %} checked {% endif %}>
+                        {{ gender }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="collapsible">
+                    <label for="sexualOrientation">Orientation:</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                <div class="checkbox-container collapsible-content">
+                    {% for orientation in orientation %}
+                    <group2>
+                        <input type="checkbox" id="orientation" name= "orientation" value="{{ orientation }}"
+                        {% if orientation in request.args.getlist('orientation') %} checked {% endif %}>
+                        {{ orientation }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div>
+                <div class="collapsible">
+                    <label for="polyPreference">Polyamory Preference:</label>
+                    <button type="button" class="toggle-button">+</button>
+                </div>
+                <div class="checkbox-container collapsible-content">
+                    {% for poly in poly %}
+                    <group2>
+                        <input type="checkbox" id="polyPreference" name= "polyPreference" value="{{ polyPreference }}"
+                        {% if polyPreference in request.args.getlist('polyPreference') %} checked {% endif %}>
+                        {{ polyPreference }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <h2> Habits </h2>
+
+            <div class="sidenav">
+                <label for="marijuana">Marijuana</label>
+                {% for choice in multipleChoice %}
+                <group2>
+                    <input type="checkbox" id="marijuana" name= "marijuana" value="{{ marijuana }}"
+                    {% if marijuana in request.args.getlist('marijuana') %} checked {% endif %}>
+                    {{ marijuana }}
+                </input>
+                </group2>
+                {% endfor %}
+            </div>
+
+            <div class="sidenav">
+                <label for="smoking">Smoking?</label>
+                {% for choice in multipleChoice %}
+                <group2>
+                    <input type="checkbox" id="smoking" name= "smoking" value="{{ smoking }}"
+                    {% if smoking in request.args.getlist('smoking') %} checked {% endif %}>
+                    {{ smoking }}
+                </input>
+                </group2>
+                {% endfor %}
+            </div>
+
+            <div>
+                <label for="drugs">Drugs?</label>
+                    {% for choice in multipleChoice %}
+                    <group2>
+                        <input type="checkbox" id="drugs" name= "drugs" value="{{ drugs }}"
+                        {% if drugs in request.args.getlist('drugs') %} checked {% endif %}>
+                        {{ drugs }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+            </div>
+            <div>
+                <label for="drinking">Drinking?</label>
+                    {% for choice in multipleChoice %}
+                    <group2>
+                        <input type="checkbox" id="drinking" name= "drinking" value="{{ drinking }}"
+                        {% if drinking in request.args.getlist('drinking') %} checked {% endif %}>
+                        {{ drinking }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+            </div>
+            <div>
+                <label for="vaping">Vaping?</label>
+                    {% for choice in multipleChoice %}
+                    <group2>
+                        <input type="checkbox" id="vaping" name= "vaping" value="{{ vaping }}"
+                        {% if vaping in request.args.getlist('vaping') %} checked {% endif %}>
+                        {{ vaping }}
+                    </input>
+                    </group2>
+                    {% endfor %}
+            </div>
+        </div>
+        </form>
+
+  <!-- Page content -->
+  <div class="main">
+
+
+<div class="profile-container">
+    {% for profile in profiles %}
+    <div class="card">
+        <img src="{{ profile.photo if profile.photo else 'polyculelogo.png' }}" alt="{{ profile.DisplayName }}" style="width:100%">
+        <div class="w3-display-bottomleft w3-container w3-text-white">
+            <h1>{{ profile['displayName'] }}</h1>
+        </div>
+        <!--<p>Age: {{ profile.age if 'age' in profile else 'Unknown' }}</p>-->
+        <p>Gender: {{ profile['gender'] }}</p>
+        <p>Location: {{ profile['location'] }}</p>
+        <p>Orientation: {{ profile['sexualOrientation'] }}</p>
+        <p>Poly Preference: {{ profile['polyPreference'] }}</p>
+        <a href="#"><i class="fa fa-dribbble"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <p><button>View Full Profile</button></p>
+    </div>
+    <br>
+    {% endfor %}
+</div>
+
+{% if profiles %}
+    <p>{{ profiles | length }} profiles found.</p>
+{% else %}
+    <p>No profiles found.</p>
+{% endif %}
+
+</div>
+<!--
+<script>
+    // Initialize noUiSlider
+    const slider = document.getElementById('age-range-slider');
+    noUiSlider.create(slider, {
+        start: [18, 100], // Initial range values
+        connect: true,
+        range: {
+            min: 18,
+            max: 100
+        },
+        tooltips: [false, false], // Show tooltips for both handles
+        format: {
+            to: function(value) {
+                return Math.round(value);
+            },
+            from: function(value) {
+                return Number(value);
+            }
+        }
+    });
+
+    // Update hidden inputs when slider changes
+    slider.noUiSlider.on('update', function(values) {
+        document.getElementById('age_min').value = values[0];
+        document.getElementById('age_max').value = values[1];
+        document.getElementById('age-value').innerText = `${values[0]} - ${values[1]}`;
+    });
+
+    // Set initial text display
+    document.getElementById('age-value').innerText = "18 - 100";
+</script>  -->
+<!-- script to collapse options-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Find all toggle buttons
+        const toggleButtons = document.querySelectorAll(".toggle-button");
+
+        toggleButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                // Find the sibling .collapsible-content to show/hide
+                const content = this.parentElement.nextElementSibling;
+
+                // Toggle active class
+                content.classList.toggle("active");
+
+                // Change button text between "+" and "-"
+                this.textContent = content.classList.contains("active") ? "-" : "+";
+            });
+        });
+    });
+</script>
+<!--event listener for search bar-->
+<script>
+    document.querySelectorAll('#search-form input, #search-form select').forEach(input => {
+        input.addEventListener('change', () => {
+            document.getElementById('search-form').submit();
+        });
+    });
+</script>
+
+</body>
+
+{% endblock %}

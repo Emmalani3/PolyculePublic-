@@ -1,0 +1,348 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+<head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link href="/static/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+    </style>
+
+    <div class="profile-container">
+        <h1>Welcome, {{ profile.displayName or "User" }}</h1>
+    </div>
+    <p> Remember to save changes using the button at the bottom of the page.</p>
+</head>
+
+<body class="w3-light-grey">
+
+    <!-- Page Container -->
+    <div class="w3-content w3-margin-top" style="max-width:1400px;">
+    <form method="POST" action="/updateprofile">
+
+      <!-- The Grid -->
+      <div class="w3-row-padding">
+        <!-- Left Column -->
+        <div class="w3-third">
+
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+                    <div class="profile-photo">
+                        {% if profile.photo %}
+                        <img src="{{ profile.photo }}" alt="Profile Photo" style="width: 100%">
+                        {% else %}
+                            <img src="/static/default-profile.png" alt="Default Profile Photo" style="width: 100%">
+                        {% endif %}
+                    </div><!--close photo-->
+
+                </div><!--close display container-->
+
+                <h2> Demographic Details </h2>
+                    <div class="w3-container">
+
+                        <div class="form-group">
+                            <label for="displayName">Update Display Name:</label>
+                            <input type="text" id="displayName" name="displayName" value="{{ profile.displayName }}"></input>
+                        </div>
+                        <div class="form-group">
+                            <label for="visibility">Visible on search?</label>
+                            <div class="radio-container">
+                                {% for choice in yn %}
+                                    <input type="radio" name="visibility" value="{{ choice }}"
+                                    {% if profile.visibility_on_search == choice %} checked {% endif %}>
+                                    {{ choice }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="occupation">Occupation:</label>
+                            <input type="text" id="occupation" name="occupation" value="{{ profile.occupation }}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dropdown">Choose a Location:</label>
+                            <select id="location" name= "location">
+                                <option value = "{{profile.location}}" selected> {{profile.location}}</option>
+                                {% for location in location %}
+                                    <option value="{{ location }}">{{ location }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="feet">Height(feet):</label>
+                            <input class="short-width type="number" id="feet" name="feet">
+                            <label for="inches">(inches):</label>
+                            <input class="short-width" type="number" id="inches" name="inches">
+                            <!-- form processing in the app route converts to inches and saves as single number-->
+                        </div>
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth:</label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth" value="{{ profile.dateOfBirth }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="dropdown">Highest Level Of Education?</label>
+                            <select id="education" name= "education">
+                                <option value = "{{profile.education}}" selected> {{profile.education}}</option>
+                                {% for education in education %}
+                                <option value="{{ education }}">{{ education }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dropdown">Choose an Ethnicity: </label>
+                            <select id="ethnicity" name= "ethnicity">
+                                <option value = "{{profile.ethnicity}}" selected> {{profile.ethnicity}} </option>
+                                {% for ethnicity in ethnicity %}
+                                <option value="{{ ethnicity }}">{{ ethnicity }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div>
+                            <div class="collapsible">
+                                <label for="languages">Languages:</label>
+                            </div>
+                            <div class="checkbox-container collapsible-content form-group">
+                                {% for language in languages %}
+                                <label>
+                                    <input type="checkbox" id="languages" name="languages" value="{{ language }}"
+                                    {% if language in profile.languages %} checked {% endif %}>{{ language }}</input>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div>
+                            <div class="collapsible">
+                                <label for="pets">Pets:</label>
+                            </div>
+                            <div class="checkbox-container collapsible-content form-group">
+                                {% for pets in pets %}
+                                <label>
+                                    <input type="checkbox" id="pets" name="pets" value="{{ pets }}"
+                                    {% if pets in profile.pets %} checked {% endif%}>{{ pets }}</input>
+                                </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hasKids">Do You Have Kids?</label>
+                            <select id="hasKids" name= "hasKids">
+                                <option value = "{{profile.hasKids}}" selected> {{profile.hasKids}}</option>
+                                {% for hasKids in hasKids %}
+                                <option value="{{ hasKids }}">{{ hasKids }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dropdown">Do You Want Kids?</label>
+                            <select id="wantsKids" name= "wantsKids">
+                                <option value = "{{profile.wantsKids}}" selected> {{profile.wantsKids}}</option>
+                                {% for wantsKids in wantsKids %}
+                                <option value="{{ wantsKids }}">{{ wantsKids }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="marijuana">Marijuana</label>
+                            <div class="radio-container">
+                                {% for choice in multipleChoice %}
+                                    <label>
+                                        <input type="radio" name="marijuana" value="{{ choice }}"
+                                        {% if profile.marijuana == choice %} checked {% endif %}>
+                                        {{ choice }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="smoking">Smoking</label>
+                            <div class="radio-container">
+                                {% for choice in multipleChoice %}
+                                    <label>
+                                        <input type="radio" name="smoking" value="{{ choice }}"
+                                        {% if profile.smoking == choice %} checked {% endif %}>
+                                        {{ choice }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="drugs">Drugs</label>
+                            <div class="radio-container">
+                                {% for choice in multipleChoice %}
+                                    <label>
+                                        <input type="radio" name="drugs" value="{{ choice }}"
+                                        {% if profile.drugs == choice %} checked {% endif %}>
+                                        {{ choice }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="drinking">Drinking</label>
+                            <div class="radio-container">
+                                {% for choice in multipleChoice %}
+                                    <label>
+                                        <input type="radio" name="drinking" value="{{ choice }}"
+                                        {% if profile.drinking == choice %} checked {% endif %}>
+                                        {{ choice }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vaping">Vaping</label>
+                            <div class="radio-container">
+                                {% for choice in multipleChoice %}
+                                    <label>
+                                        <input type="radio" name="vaping" value="{{ choice }}"
+                                        {% if profile.vaping == choice %} checked {% endif %}>
+                                        {{ choice }}
+                                    </label>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                </div><!---close card4-->
+            <br>
+            </div>
+        </div><!--close left column-->
+
+<!-- Right Column -->
+<div class="w3-twothird">
+
+    <div class="w3-container w3-card w3-black w3-margin-bottom">
+
+        <h2 class="w3-text-grey w3-padding-16"><i class="w3-margin-right w3-xxlarge w3-text-teal"></i>About Me </h2>
+        <div class="w3-container">
+            <p>Tell Us A Little About You?</p>
+            <label for="biography"></label>
+            <textarea class="centered-textarea" id="biography" name="biography" value="{{ profile.biography }}" rows="10" cols="50">{{ profile.biography }}</textarea>
+                <script>
+                document.getElementById('biography').addEventListener('input', function() {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                });
+                </script>
+                <p>
+                </p>
+        <hr>
+        </div>
+
+        <div class="w3-container">
+            <h5 class="w3-opacity"><b>QnA 1</b></h5>
+            <p>Text of qna 1 </p>
+            <p>answer of qna 1 </p>
+            <hr>
+            <br>
+        </div>
+    </div>
+
+    <div class="w3-container w3-card w3-white" style="text-align: center">
+
+        <h2 class="w3-text-grey w3-padding-16"><i class="w3-margin-right w3-xxlarge w3-text-teal"></i>Sexual Preferences</h2>
+        <div class="w3-container"  style="text-align: center;">
+            <div>
+                <label for="dropdown">Gender:</label>
+                <select id="gender" name= "gender">
+                    <option value = "{{profile.gender}}" selected> {{profile.gender}}</option>
+                    {% for gender in gender %}
+                    <option value="{{ gender }}">{{ gender }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="dropdown">Pronouns:</label>
+                <select id="pronouns" name= "pronouns">
+                    <option value = "{{profile.pronouns}}" selected> {{profile.pronouns}}</option>
+                    {% for pronouns in pronouns %}
+                    <option value="{{ pronouns }}">{{ pronouns }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="dropdown">SexualOrientation?</label>
+                <select id="sexualOrientation" name= "sexualOrientation">
+                    <option value = "{{profile.sexualOrientation}}" selected> {{profile.sexualOrientation}}</option>
+                    {% for orientation in orientation %}
+                    <option value="{{ orientation }}">{{ orientation }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div>
+                <label for="dropdown">PolyPreference?</label>
+                <select id="polyPreference" name= "polyPreference">
+                    <option value = "{{profile.polyPreference}}" selected> {{profile.polyPreference}}</option>
+                    {% for poly in poly %}
+                    <option value="{{ poly }}">{{ poly }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <label for="dropdown">Do You Currently Have Partners?</label>
+                <select id="currentlyPartnered" name= "currentlyPartnered">
+                    <option value = "{{profile.currentlyPartnered}}" selected> {{profile.currentlyPartnered}}</option>
+                    {% for yn in yn %}
+                    <option value="{{ yn }}">{{ yn }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div>
+                <div>
+                    <label for="dropdown">Current Number of Partners?</label>
+                    <input class="short-width" type="int" id="numCurrentPartners" name="numCurrentPartners" value="{{ profile.numCurrentPartners }}">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="dropdown">Polysaturation (max partners)</label>
+                    <input class="short-width" type="int" id="maxPartners" name="maxPartners" value="{{ profile.maxPartners }}">
+                </div>
+            </div>
+    <hr>
+        </div>
+    </div><br>
+
+    <div class="w3-container w3-card w3-black w3-margin-bottom">
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+    </div>
+    </form>
+    </div>
+    <div class="other-sections">
+        <h2>Settings</h2>
+        <a href="/settings">Manage Your Account</a>
+
+        <h2>Partners</h2>
+        <a href="/partners">Manage Partners</a>
+
+
+    </div>
+</div>
+
+<script>
+    // Example height in inches
+    let heightInInches = {{profile.height}};
+
+    // Calculate feet and inches
+    let feet = Math.floor(heightInInches / 12);
+    let inches = heightInInches % 12;
+
+    // Populate the form fields
+    document.getElementById('feet').value = feet;
+    document.getElementById('inches').value = inches;
+</script>
+</body>
+{% endblock %}

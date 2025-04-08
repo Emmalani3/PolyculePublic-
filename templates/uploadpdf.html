@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+<!-- upload pdf -->
+ <!-- preview pdf-->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upload PDF</title>
+    </head>
+    <body>
+        <h1>Upload a PDF</h1>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% if success %}
+            <p><a href="{{ preview_url }}">Preview Uploaded PDF</a></p>
+        {% endif %}
+        <form action="/uploadpdf" method="post" enctype="multipart/form-data">
+            <input type="file" id="pdf" name="pdf" accept=".pdf">
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+
+        <h2>Current PDF Preview</h2>
+        <iframe src="{{ profile.STD_STI_Tests }}" width="850" height="1100"></iframe>
+    </body>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+    <!-- upload photo -->
+   <!-- <form action="/uploadphoto" method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <button class="btn btn-primary" type="submit">Upload</button>
+    </form> -->
+    <!-- preview photo-->
+    <div class="containercolumn">
+        <div class="column">
+        <h2>Current Photo Preview</h2>
+        <div class="profile-photo">
+            {% if profile.photo %}
+            <img src="{{ profile.photo }}" alt="Profile Photo" style="width: 70%">
+            {% else %}
+                <img src="/static/default-profile.png" alt="Default Profile Photo" style="width: 50%">
+            {% endif %}
+        </div><!--close photo-->
+    </div>
+
+    <div class="column">
+        <h2>Updated Photo Preview</h2>
+        <form action="/uploadphoto" method="post" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="photo" accept="image/*">
+            <div class="preview-wrapper">
+                <img id="preview" src="#" alt="Image Preview" style="width:70%">
+                <button class="btn btn-primary" type="submit">Upload</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+document.getElementById('fileInput').addEventListener('change', function() {
+    var file = this.files[0];
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var img = document.getElementById('preview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    }
+});
+</script>
+
+<style>
+.containercolumn {
+    display: flex;
+
+}
+.column {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.preview-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img {
+    max-width: 100%; /* Ensure images don't exceed column width */
+}
+</style>
+
+ {% endblock %}

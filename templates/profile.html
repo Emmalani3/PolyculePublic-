@@ -1,0 +1,159 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+
+{% block main %}
+
+<head>
+    <title>W3.CSS Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+    <link href="/static/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+    </style>
+</head>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+    <div class="w3-row-padding">
+
+        <!-- Left Column -->
+        <div class="w3-third">
+
+            <div class="w3-white w3-text-grey w3-card-4">
+                <div class="w3-display-container">
+                    <div class="profile-photo">
+                        {% if profile.photo %}
+                        <img src="{{ profile.photo }}" alt="Profile Photo" style="width: 100%">
+                        {% else %}
+                        <img src="/static/default-profile.png" alt="Default Profile Photo" style="width: 100%">
+                        {% endif %}
+                    </div><!--close photo-->
+                    <div class="w3-display-bottomleft w3-container w3-text-black">
+                        <h2 class="shadow-text" >{{ profile.displayName}}</h2>
+                    </div>
+               <!--close display container-->
+                  <div class="w3-display-bottomright w3-container w3-text-white">
+                    <button class="nav-item btn btn-primary"><a class="nav-link" href="/uploadphoto">Update Photo</a></button>
+                </div>
+                </div><!-- close card?-->
+        <!---</div>close column?-->
+
+        <h2> Demographic Details </h2>
+        <div class="w3-container left-align line">
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Occupation: &nbsp;</label>{{profile.occupation}}</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Location: &nbsp;</label>{{profile.location}}</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Age:&nbsp; </label>{{age[0]['age']}}</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Height: &nbsp;</label>{{profile.height//12}}'&nbsp; {{profile.height%12}}"</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Education: &nbsp;</label>{{ profile.education }}</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Ethnicity: &nbsp;</label>{{profile.ethnicity}}</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Languages: &nbsp;</label>{{profile.languages}}</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Pets: &nbsp;</label>{{ profile.pets}}</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Has Kids: &nbsp;</label>{{profile.hasKids}}</p>
+          <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Wants Kids: &nbsp;</label>{{profile.wantsKids}}</p>
+
+      </div>
+            <table>
+                <tbody>
+                        <tr>
+                            <td><img src="static/5.png" alt="Marijuana icon" width="30"></td>
+                            <td>{{ profile.marijuana }} </td>
+                        </tr>
+                        <tr>
+                            <td><img src="static/1.png" alt="Drinking icon" width="30"></td>
+                            <td>{{ profile.drinking }} </td>
+                        </tr>
+                        <tr>
+                            <td><img src="static/3.png" alt="Vaping icon" width="30"></td>
+                            <td>{{ profile.vaping }} </td>
+                        </tr>
+                        <tr>
+                            <td><img src="static/2.png" alt="Smoking icon" width="30"></td>
+                            <td>{{ profile.smoking }} </td>
+                        </tr>
+                        <tr>
+                            <td><img src="static/4.png" alt="Drugs icon" width="30"></td>
+                            <td>{{ profile.drugs }} </td>
+                        </tr>
+                </tbody>
+            </table>
+            <button class="nav-item btn btn-primary"><a class="nav-link" href="/updateprofile">Edit Details</a></button>
+        </div><!--close card4-->
+        <br>
+    </div><br><!--close left column-->
+
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+
+      <div class="w3-container w3-card w3-black w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="w3-margin-right w3-xxlarge w3-text-teal"></i>About Me </h2>
+        <div class="w3-container">
+          <p>{{ profile.biography }}</p>
+          <button class="nav-item btn btn-primary"><a class="nav-link" href="/updateprofile">Update Biography</a></button>
+          <hr>
+        </div>
+
+        <div class="w3-container line">
+          <h5 class="w3-opacity"><b>QnA 1</b></h5>
+          <p>Text of qna 1 </p>
+          <p>answer of qna 1 </p>
+          <hr>
+          <br>
+        </div>
+      </div>
+
+      <div class="w3-container w3-card w3-white">
+        <h2 class="w3-text-grey w3-padding-16"><i class="w3-margin-right w3-xxlarge w3-text-teal"></i>Preferences</h2>
+        <div class="w3-container line">
+            <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Gender: &nbsp;</label>{{profile.gender}}</p>
+            <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Pronouns: &nbsp;</label>{{ profile.pronouns }}</p>
+            <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Sexual Orientation: &nbsp;</label>{{ profile.sexualOrientation }}</p>
+            <p><i class="w3-margin-right w3-large w3-text-teal"></i><label>Poly Orientation: &nbsp;</label>{{ profile.polyPreference }}</p>
+            <button class="nav-item btn btn-primary"><a class="nav-link" href="/updateprofile">Update Preferences</a></button>
+            <hr>
+        </div>
+      </div><br>
+
+        <div class="w3-container w3-card w3-black w3-margin-bottom">
+            <h2 class="w3-text-grey w3-padding-16"><i class="w3-margin-right w3-xxlarge w3-text-teal"></i>STD-STI test</h2>
+            <div class="w3-container">
+              <p>Upload your recent test results and share them with potential dates. Your document stays private unless you give someone access.</p>
+              <button class="btn btn-primary">Share with Partner</button>
+              <p></p>
+              <button class="nav-item btn btn-primary"><a class="nav-link" href="/uploadpdf">Update PDF</a></button>
+              <h2>STD/STI Tests</h2>
+                  {% if profile.STD_STI_Tests %}
+                        <a href="/download-std-sti/{{ user_clid }}" class="btn btn-primary">View Your Test Results</a>
+                  {% else %} <!--maybe replace with link to upload-->
+                      <p>No test uploaded yet.</p>
+                  {% endif %}
+              <hr>
+            </div>
+
+          <br>
+        </div>
+            <div class="other-sections">
+              <h2>Settings</h2>
+              <a href="/settings">Manage Your Account</a>
+
+              <h2>Partners</h2>
+              <a href="/partners">Manage Partners</a>
+          </div>
+      </div>    <!-- End Right Column -->
+    </div>  <!-- End Grid -->
+</div>  <!-- End Page Container -->
+
+</body>
+{% endblock %}
