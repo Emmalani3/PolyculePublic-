@@ -1,0 +1,298 @@
+/* Alphabetically Organized CSS */
+
+/* General Styling */
+body {
+    background-color: #000000;
+    color: grey;
+    display: flex;
+    flex-direction: column; /* Fixes footer placement */
+    height: 100%; /* Ensures full height */
+}
+
+/* Button Styling */
+button {  /*affecting the +/-*/
+    background-color: yellow;/* errase later?*/
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    outline: 0;
+    padding: 8px;
+    text-align: center;
+    width: 200px;
+}
+
+button:hover {
+    opacity: 0.7;
+}
+/*main button control*/
+button.btn {
+    background: #7a2aa2; /*purple*/
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: flex;
+}
+button.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Card Styling */
+.card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(30% - 20px);
+    max-width: calc(30% - 20px);
+    overflow: hidden;
+    text-align: left;
+}
+.card button {
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+}
+.card button:hover {
+    background-color: #0056b3;
+}
+.card h1 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+.card img {
+    border-radius: 8px;
+    height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+}
+.card p {
+    color: #555;
+    font-size: 1em;
+}
+
+/* Checkbox and Radio Button Containers */
+.checkbox-container,
+.radio-container {
+    display: inline-block;
+    flex-direction: row;
+    margin-left: 30px;
+    text-align: left;
+    color: green;
+}/*effects updateprofile options*/
+/* effects search options*/
+/* Circular Profile Photo */
+.circular {
+    border-radius: 50%;
+    width: 100px;
+}
+
+
+/* Footer Styling */
+.footer {
+    background-color: #333;
+    color: #fff;
+    margin-top: auto;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+/* Form Group */
+.form-group {
+    align-items: left;
+    display: inline-block;
+    flex-direction: row;
+    margin-bottom: 15px;
+    text-align: left;
+}/* affects updateprofile left bar*/
+.form-group input[type="checkbox"],
+.form-group input[type="radio"],
+.form-group input[type="date"],
+.form-group input[type="int"],
+.form-group input[type="text"] {
+    flex: 1;
+    font-size: 14px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
+    color: red;
+}/* a few lines on profile?*/
+
+/* Line Styling */
+.line {
+    line-height: .5;
+}/* profile demographic details*/
+.login-container,
+.register-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+/* Links */
+a {
+    color: black;
+    font-size: 22px;
+    text-decoration: none;
+}
+a:hover {
+    opacity: 0.7;
+}
+
+/* Main Content */
+.main {
+    margin-left: 160px;
+    padding: 0px 10px;
+}
+
+/* Navbar */
+nav {
+    background: linear-gradient(to right, #3facd2, #024cad, #7a2aa2, #f5318f, #fdde8e);
+    color: white;
+}
+nav .navbar-brand {
+    font-size: xx-large;
+}
+nav a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+nav a:hover {
+    opacity: 0.7;
+}
+
+/* Profile Container */
+.profile-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Shadowed Text */
+.shadow-text {
+    text-shadow: 1px 1px 2px #FFFFFF;
+}/* display name*/
+
+/* Short Width Input */
+.short-width {
+    width: 50px !important;
+}
+
+/* Sidebar Navigation */
+.sidenav {
+    background-color: #111;
+    float: left;
+    height: 100%;
+    left: 0;
+    padding-top: 2px;
+    text-align: left;
+    width: 300px;
+    z-index: 1;
+} /* search option bar*/
+.sidenav a {
+    color: #818181;
+    display: block;
+    font-size: 18px;
+    padding: 6px 16px;
+    text-decoration: none;
+}
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+.sidenav label {
+    color: hotpink;
+    display: inline-block;
+    text-align: left;
+}/*search bar labes*/
+.sidenav group2 {
+    color: blue;
+    display: inline-block;
+    text-align: left;
+    align-items: left;
+    flex-direction: row;
+
+}/*search bar labes*/
+
+/* Slider Styling */
+.slider {
+    color: hotpink;
+    width: 20%;
+}/*??*/
+.slider-container {
+    margin-bottom: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+    text-align: center;
+}
+#age-range-slider {
+    background: transparent !important; /* Ensure no background color */
+    border: none !important;            /* Remove any border */
+    padding: 0 !important;              /* Remove padding */
+    margin: 0 !important;               /* Remove margin */
+    box-shadow: none !important;        /* Remove any box shadow */
+}
+#age-range-slider .noUi-handle {
+    background: white;
+    border: 2px solid hotpink; /* Adds a border to the handle */
+    height: 20px;
+    width: 20px;
+    border-radius: 50%; /* Makes the handles circular */
+}
+
+#age-range-slider .noUi-handle:before,
+#age-range-slider .noUi-handle:after {
+    display: none !important; /* Hides the default vertical lines */
+}
+
+#age-range-slider .noUi-base {
+    background: grey !important; /*slider color behind slide selector*/
+    border: none !important;
+    height:8px;
+}
+
+#age-range-slider .noUi-connect {
+    background: linear-gradient(to right, #3facd2, #024cad, #7a2aa2, #f5318f, #fdde8e); /* Gradient for the selected range */
+    height: 8px; /*height of slider bar*/
+    border-radius: 5px;
+}
+
+/* Table Styling */
+table {
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    width: flex;
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+th {
+    background-color: #f2f2f2;
+}
+
+/* Title Styling */
+.title {
+    color: grey;
+    font-size: 18px;
+}
